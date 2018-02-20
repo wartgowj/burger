@@ -1,1 +1,91 @@
-//index
+<h1>EAT THE BURGER!!</h1>
+
+<ul>
+    {{#each burgers}}
+     {{#unless this.devoured}}
+    <li>
+        <p>
+            {{this.id}}. {{this.burger_name}}
+
+            <button data-burgerid="{{this.id}}" class="devourBurger">Devour Me!</button>
+        </p>
+    </li>
+     {{/unless}}
+    {{/each}}
+</ul>
+<h3>DEVOURED!!! YUUUMMM.....</h3>
+<ul>
+    {{#each burgers}}
+     {{#if this.devoured}}
+    <li>
+        <p>
+            {{this.id}}. {{this.burger_name}}
+            <button data-burgerid="{{this.id}}" class="deleteBurger">Delete Me!</button>
+        </p>
+    </li>
+     {{/if}}
+    {{/each}}
+</ul>
+
+<h2>Add a New Burger</h2>
+<form id="addburger" class="button-size">
+    <textarea type="text" name="burger"></textarea>
+    <button type="submit">Add Me!</button>
+</form>
+
+
+<script type="text/javascript">
+
+//change a burger to devoured = true
+    $(".devourBurger").on("click", function (event) {
+        var id = $(this).data("burgerid");
+
+        // Send the UPDATE request.
+        $.ajax("/burger/" + id, {
+            type: "PUT"
+        }).then(
+            function () {
+                // Reload the page to get the updated list
+                location.reload();
+            }
+            );
+    });
+
+    //add a new burger to db
+    $("#addburger").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var newBurger = {
+            burger: $("#addburger [name=burger]").val().trim()
+        };
+
+        // Send the POST request.
+        $.ajax("/burger", {
+            type: "POST",
+            data: newBurger
+        }).then(
+            function () {
+                 // Reload the page to get the updated list
+                location.reload();
+            }
+            );
+    });
+
+    //delete burger from devoured list
+    $(".deleteBurger").on("click", function (event) {
+            var id = $(this).data("burgerid");
+
+            // Send the DELETE request.
+            $.ajax("/burger/" + id, {
+                type: "DELETE"
+            }).then(
+                function () {
+                    // Reload the page to get the updated list
+                    location.reload();
+                }
+                );
+        });
+
+  
+</script>
