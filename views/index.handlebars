@@ -1,25 +1,82 @@
 <h1>EAT THE BURGER!!</h1>
 
-<ul>
+<style>
+    body{
+        background-color: rgb(192, 125, 67);
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 5%;
+        box-sizing: border-box;
+    }
+    h1 {
+        font-size: 70px;
+        font-family: fantasy
+    }
+    .burgerList {
+        background-color: goldenrod;
+        padding: 3%;
+        line-height: 20px;
+        border-radius: 5%;
+        font-size: 20px;
+        width: auto;
+        display: float;
+        float: left;
+    }
+    .eatenBurgers {
+         background-color: darkred;
+        padding: 3%;
+        line-height: 20px;
+        border-radius: 5%;
+        font-size: 20px;
+        width: auto;
+        display: float;
+        float: right;
+    }
+    .addForm {
+        margin-top: 30px;
+        margin: auto;
+        line-height: 20px;
+        font-size: 20px;
+        width: 100%;
+        margin: 0, auto;
+        display: float;
+        float: left;
+        align-content: center;
+    }
+    textarea {
+        resize: none;
+        width: 300px;
+        border-radius: 5px;
+    }
+
+    button {
+        margin-left: 10px;
+        padding: 2px;
+        border-radius: 5px;
+    }
+</style>
+
+<ul style="list-style: none;" class="burgerList">
+    <h2>EAT ME!!!</h2>
     {{#each burgers}}
      {{#unless this.devoured}}
     <li>
         <p>
-            {{this.id}}. {{this.burger_name}}
-
-            <button data-burgerid="{{this.id}}" class="devourBurger">Devour Me!</button>
+            {{this.burger_name}}
+            <button data-burgerid="{{this.id}}" class="devourBurger">Eat Me!</button>
         </p>
     </li>
      {{/unless}}
     {{/each}}
 </ul>
-<h3>DEVOURED!!! YUUUMMM.....</h3>
-<ul>
+
+<ul style="list-style: none;"class="eatenBurgers">
+    <h2>DEVOURED!!!</h2>
     {{#each burgers}}
      {{#if this.devoured}}
     <li>
         <p>
-            {{this.id}}. {{this.burger_name}}
+            {{this.burger_name}}
             <button data-burgerid="{{this.id}}" class="deleteBurger">Delete Me!</button>
         </p>
     </li>
@@ -27,11 +84,13 @@
     {{/each}}
 </ul>
 
-<h2>Add a New Burger</h2>
+<div class="addForm">
+<h2>ORDER A BURGER</h2>
 <form id="addburger" class="button-size">
-    <textarea type="text" name="burger"></textarea>
+    <textarea type="text" placeholder="Add a burger here" name="burger"></textarea>
     <button type="submit">Add Me!</button>
 </form>
+</div>
 
 
 <script type="text/javascript">
