@@ -18,7 +18,7 @@ Once devoured value is true, Burgers move to the Devoured Burger List.
 Pulls the list of devoured burgers from the mysql database.
 Handlebars renders this info onto the page in the devoured list.
 
-**DELETE ME** button deletes this items from the database completely.
+**DELETE ME** button deletes this item from the database completely.
 
 
 **Order a Burger**
